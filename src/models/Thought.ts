@@ -1,10 +1,10 @@
-import { Schema, model, type Document } from 'mongoose';
+import mongoose, { Schema, type Document } from 'mongoose';
 import { dateFormat } from '../utils/dateFormat.js';
 import reactionSchema from './Reaction.js'
 
 export interface IThought extends Document {
   thoughtText: string;
-  createdAt: Date;
+  createdAt: Schema.Types.Date;
   username: string;
   reactions: [typeof reactionSchema]
 }
@@ -19,6 +19,7 @@ const thoughtSchema = new Schema<IThought>({
   createdAt: {
     type: Date,
     default: Date.now,
+    get: (timestamp: any) => dateFormat(timestamp),
   },
   username: {
     type: String,
