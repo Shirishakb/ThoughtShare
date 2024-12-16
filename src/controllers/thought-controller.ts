@@ -30,6 +30,7 @@ export const getSingleThought=async(req:Request,res:Response)=>{
 // create a thought
 
 export const createThought=async(req:Request,res:Response)=>{
+  console.log("testing create thought",req.body.userId,);
   try{
     const dbThoughtData=await Thought.create(req.body);
 
@@ -79,6 +80,26 @@ export const deleteThought=async(req:Request,res:Response)=>{
     return res.status(500).json(err);
     }
 }
+
+//remove thought id from user's `thoughts` field
+export const removeThoughtId=async(thoughtId:string)=>{
+  try{
+    const dbUserData=await User.findOneAndUpdate(
+      {thoughts:thoughtId},
+      {$pull:{thoughts:thoughtId}},
+      {new:true}
+    );
+
+    if(!dbUserData){
+      return false;
+    }
+
+    return true;
+  }catch(err){
+    console.log(err);
+    return false;
+  }
+}
 // add reaction
 export const addReaction=async(req:Request,res:Response)=>{
   try{
@@ -109,7 +130,3 @@ export const deleteReaction=async(req:Request,res:Response)=>{
     return res.status(500).json(err);
     }
 }
-// export const addReaction = async(req: Request, res: Response) => {
-//   try {
-//     const dbThoughtData = await Thought.findOneAndUpdate(
-//       { _id: req.params.thoughtId },

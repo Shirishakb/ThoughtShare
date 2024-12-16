@@ -6,7 +6,7 @@ export interface IReaction extends Document {
   reactionId: Types.ObjectId;
   reactionBody: string;
   username: string;
-  createdAt: Date;
+  createdAt: Schema.Types.Date;
 }
 
 const reactionSchema = new Schema<IReaction>({
@@ -26,6 +26,7 @@ const reactionSchema = new Schema<IReaction>({
   createdAt: {
     type: Date,
     default: Date.now,
+    get: (timestamp: any) => dateFormat(timestamp),
   },
 }, {
   toJSON: { getters: true },
