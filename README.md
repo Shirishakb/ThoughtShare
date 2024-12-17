@@ -202,3 +202,9 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 * `POST` to create a reaction stored in a single thought's `reactions` array field
 
 * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+
+# Walkthrough Video
+
+https://www.loom.com/share/71cc87237d874341a35b626d58f70f78?sid=ac591530-eb6e-459d-92fb-559fdc90d916
+
+https://www.loom.com/share/ec8a0c1add2b44278ece6649640a52bc?sid=4c1b2abe-c591-4223-a140-75727c89ef19
